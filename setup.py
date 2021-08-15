@@ -16,11 +16,13 @@ setup(
     description="",
     author="MaskTap, Inc.",
     url="",
-    packages=find_packages("wrapmondrian"),
-    package_dir={"": "wrapmondrian"},
-    py_modules=[splitext(basename(path))[0] for path in glob(
-        "wrapmondrian/*.py") + glob("wrapmondrian/utils/*.py")],
-    include_package_data=True,
+    packages=['wrapmondrian'],
+    # packages=find_packages("wrapmondrian"),
+    # package_dir={"": "wrapmondrian"},
+    
+#     py_modules=[splitext(basename(path))[0] for path in glob(
+#         "wrapmondrian/*.py") + glob("wrapmondrian/utils/*.py")],
+#     include_package_data=True,
     zip_safe=False,
     # install_requires=_requires_from_file("requirements.txt"),
     setup_requires=["pytest-runner"],
