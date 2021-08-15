@@ -16,7 +16,7 @@ setup(
     description="",
     author="MaskTap, Inc.",
     url="",
-    packages=['wrapmondrian'],
+    packages=['wrapmondrian', 'wrapmondrian.utils'],
     # packages=find_packages("wrapmondrian"),
     # package_dir={"": "wrapmondrian"},
     
