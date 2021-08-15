@@ -2,8 +2,8 @@
 from datetime import datetime
 import unittest
 
-from mondrian import mondrian
-from utils.read_file import read_csv
+from wrapmondrian.mondrian import mondrian
+from wrapmondrian.utils.read_file import read_csv
 
 class functionTest(unittest.TestCase):
     def test1_mondrian_strict(self):
