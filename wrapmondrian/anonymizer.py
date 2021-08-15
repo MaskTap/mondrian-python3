@@ -4,9 +4,9 @@ run mondrian with given parameters
 
 # !/usr/bin/env python
 # coding=utf-8
-from .mondrian import mondrian
-from .utils.read_adult_data import read_data as read_adult
-from .utils.read_informs_data import read_data as read_informs
+from wrapmondrian.mondrian import mondrian
+from wrapmondrian.utils.read_adult_data import read_data as read_adult
+from wrapmondrian.utils.read_informs_data import read_data as read_informs
 import sys, copy, random
 
 DATA_SELECT = 'a'
