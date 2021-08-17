@@ -5,5 +5,5 @@ While the original one was made for python2, this repository is for python3.
 # Installation
 
 ```sh
-pip install git+https://github.com/MaskTap/wrapmondrian.git
+pip install git+https://github.com/MaskTap/mondrian-python3.git
 ```
