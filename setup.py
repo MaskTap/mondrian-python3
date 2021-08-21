@@ -10,18 +10,13 @@ def _requires_from_file(filename):
 
 
 setup(
-    name="mondrian",
+    name="Mondrian",
     version="0.1.0",
-    license="",
+    license="MIT",
     description="",
     author="MaskTap, Inc.",
     url="",
-    packages=["mondrian", "mondrian.utils"],
-    # packages=find_packages("mondrian"),
-    # package_dir={"": "mondrian"},
-    #     py_modules=[splitext(basename(path))[0] for path in glob(
-    #         "mondrian/*.py") + glob("mondrian/utils/*.py")],
-    #     include_package_data=True,
+    packages=["Mondrian", "Mondrian.utils"],
     zip_safe=False,
     # install_requires=_requires_from_file("requirements.txt"),
     setup_requires=["pytest-runner"],
