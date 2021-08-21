@@ -24,7 +24,7 @@ main module of mondrian
 
 import pdb
 import time
-from mondrian-python3.utils.utility import cmp_value, value, merge_qi_value
+from mondrian.utils.utility import cmp_value, value, merge_qi_value
 from functools import cmp_to_key
 
 # warning all these variables should be re-inited, if
@@ -83,8 +83,7 @@ def get_normalized_width(partition, index):
     similar to NCP
     """
     d_order = QI_ORDER[index]
-    width = value(d_order[partition.high[index]]) - \
-        value(d_order[partition.low[index]])
+    width = value(d_order[partition.high[index]]) - value(d_order[partition.low[index]])
     if width == QI_RANGE[index]:
         return 1
     return width * 1.0 / QI_RANGE[index]
@@ -128,17 +127,17 @@ def find_median(partition, dim):
     """
     # use frequency set to get median
     frequency = frequency_set(partition, dim)
-    split_val = ''
-    next_val = ''
+    split_val = ""
+    next_val = ""
     value_list = list(frequency.keys())
     value_list.sort(key=cmp_to_key(cmp_value))
     total = sum(frequency.values())
     middle = total // 2
     if middle < GL_K or len(value_list) <= 1:
         try:
-            return '', '', value_list[0], value_list[-1]
+            return "", "", value_list[0], value_list[-1]
         except IndexError:
-            return '', '', '', ''
+            return "", "", "", ""
     index = 0
     split_index = 0
     for i, qi_value in enumerate(value_list):
@@ -176,10 +175,10 @@ def anonymize_strict(partition):
             pdb.set_trace()
         (split_val, next_val, low, high) = find_median(partition, dim)
         # Update parent low and high
-        if low != '':
+        if low != "":
             partition.low[dim] = QI_DICT[dim][low]
             partition.high[dim] = QI_DICT[dim][high]
-        if split_val == '' or split_val == next_val:
+        if split_val == "" or split_val == next_val:
             # cannot split
             partition.allow[dim] = 0
             continue
@@ -226,10 +225,10 @@ def anonymize_relaxed(partition):
     # use frequency set to get median
     (split_val, next_val, low, high) = find_median(partition, dim)
     # Update parent low and high
-    if low != '':
+    if low != "":
         partition.low[dim] = QI_DICT[dim][low]
         partition.high[dim] = QI_DICT[dim][high]
-    if split_val == '':
+    if split_val == "":
         # cannot split
         partition.allow[dim] = 0
         anonymize_relaxed(partition)
@@ -344,8 +343,10 @@ def mondrian(data, k, relax=False, QI_num=-1):
         dp += len(partition) ** 2
         for record in partition.member[:]:
             for index in range(QI_LEN):
-                record[index] = merge_qi_value(QI_ORDER[index][partition.low[index]],
-                                               QI_ORDER[index][partition.high[index]])
+                record[index] = merge_qi_value(
+                    QI_ORDER[index][partition.low[index]],
+                    QI_ORDER[index][partition.high[index]],
+                )
             result.append(record)
     # If you want to get NCP values instead of percentage
     # please remove next three lines
@@ -354,6 +355,7 @@ def mondrian(data, k, relax=False, QI_num=-1):
     ncp *= 100
     if __DEBUG:
         from decimal import Decimal
+
         print("Discernability Penalty=%.2E" % Decimal(str(dp)))
         print("size of partitions=%d" % len(RESULT))
         print("K=%d" % k)
