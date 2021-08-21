@@ -10,19 +10,18 @@ def _requires_from_file(filename):
 
 
 setup(
-    name="wrapmondrian",
+    name="mondrian-python3",
     version="0.1.0",
     license="",
     description="",
     author="MaskTap, Inc.",
     url="",
-    packages=['wrapmondrian', 'wrapmondrian.utils'],
-    # packages=find_packages("wrapmondrian"),
-    # package_dir={"": "wrapmondrian"},
-    
-#     py_modules=[splitext(basename(path))[0] for path in glob(
-#         "wrapmondrian/*.py") + glob("wrapmondrian/utils/*.py")],
-#     include_package_data=True,
+    packages=["mondrian-python3", "mondrian-python3.utils"],
+    # packages=find_packages("mondrian-python3"),
+    # package_dir={"": "mondrian-python3"},
+    #     py_modules=[splitext(basename(path))[0] for path in glob(
+    #         "mondrian-python3/*.py") + glob("mondrian-python3/utils/*.py")],
+    #     include_package_data=True,
     zip_safe=False,
     # install_requires=_requires_from_file("requirements.txt"),
     setup_requires=["pytest-runner"],
