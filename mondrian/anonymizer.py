@@ -4,12 +4,12 @@ run mondrian with given parameters
 
 # !/usr/bin/env python
 # coding=utf-8
-from mondrian-python3.mondrian import mondrian
-from mondrian-python3.utils.read_adult_data import read_data as read_adult
-from mondrian-python3.utils.read_informs_data import read_data as read_informs
+from mondrian.mondrian import mondrian
+from mondrian.utils.read_adult_data import read_data as read_adult
+from mondrian.utils.read_informs_data import read_data as read_informs
 import sys, copy, random
 
-DATA_SELECT = 'a'
+DATA_SELECT = "a"
 RELAX = False
 INTUITIVE_ORDER = None
 
@@ -20,7 +20,7 @@ def write_to_file(result):
     """
     with open("data/anonymized.data", "w") as output:
         for r in result:
-            output.write(';'.join(r) + '\n')
+            output.write(";".join(r) + "\n")
 
 
 def get_result_one(data, k=10):
@@ -31,11 +31,11 @@ def get_result_one(data, k=10):
     data_back = copy.deepcopy(data)
     result, eval_result = mondrian(data, k, RELAX)
     # Convert numerical values back to categorical values if necessary
-    if DATA_SELECT == 'a':
+    if DATA_SELECT == "a":
         result = covert_to_raw(result)
     else:
         for r in result:
-            r[-1] = ','.join(r[-1])
+            r[-1] = ",".join(r[-1])
     # write to anonymized.out
     write_to_file(result)
     data = copy.deepcopy(data_back)
@@ -49,10 +49,10 @@ def get_result_k(data):
     """
     data_back = copy.deepcopy(data)
     for k in range(5, 105, 5):
-        print('#' * 30)
+        print("#" * 30)
         print("K=%d" % k)
         result, eval_result = mondrian(data, k, RELAX)
-        if DATA_SELECT == 'a':
+        if DATA_SELECT == "a":
             result = covert_to_raw(result)
         data = copy.deepcopy(data_back)
         print("NCP %0.2f" % eval_result[0] + "%")
@@ -77,12 +77,12 @@ def get_result_dataset(data, k=10, num_test=10):
     ncp = 0
     rtime = 0
     for pos in datasets:
-        print('#' * 30)
+        print("#" * 30)
         print("size of dataset %d" % pos)
         for j in range(num_test):
             temp = random.sample(data, pos)
             result, eval_result = mondrian(temp, k, RELAX)
-            if DATA_SELECT == 'a':
+            if DATA_SELECT == "a":
                 result = covert_to_raw(result)
             ncp += eval_result[0]
             rtime += eval_result[1]
@@ -91,7 +91,7 @@ def get_result_dataset(data, k=10, num_test=10):
         rtime /= num_test
         print("Average NCP %0.2f" % ncp + "%")
         print("Running time %0.2f" % rtime + " seconds")
-        print('#' * 30)
+        print("#" * 30)
 
 
 def get_result_qi(data, k=10):
@@ -101,17 +101,17 @@ def get_result_qi(data, k=10):
     data_back = copy.deepcopy(data)
     num_data = len(data[0])
     for i in reversed(list(range(1, num_data))):
-        print('#' * 30)
+        print("#" * 30)
         print("Number of QI=%d" % i)
         result, eval_result = mondrian(data, k, RELAX, i)
-        if DATA_SELECT == 'a':
+        if DATA_SELECT == "a":
             result = covert_to_raw(result)
         data = copy.deepcopy(data_back)
         print("NCP %0.2f" % eval_result[0] + "%")
         print("Running time %0.2f" % eval_result[1] + " seconds")
 
 
-def covert_to_raw(result, connect_str='~'):
+def covert_to_raw(result, connect_str="~"):
     """
     During preprocessing, categorical attributes are covert to
     numeric attribute using intuitive order. This function will covert
@@ -125,7 +125,7 @@ def covert_to_raw(result, connect_str='~'):
         covert_record = []
         for i in range(qi_len):
             if len(INTUITIVE_ORDER[i]) > 0:
-                vtemp = ''
+                vtemp = ""
                 if connect_str in record[i]:
                     temp = record[i].split(connect_str)
                     raw_list = []
@@ -144,18 +144,18 @@ def covert_to_raw(result, connect_str='~'):
     return covert_result
 
 
-if __name__ == '__main__':
-    FLAG = ''
+if __name__ == "__main__":
+    FLAG = ""
     LEN_ARGV = len(sys.argv)
     try:
         MODEL = sys.argv[1]
         DATA_SELECT = sys.argv[2]
     except IndexError:
-        MODEL = 's'
-        DATA_SELECT = 'a'
+        MODEL = "s"
+        DATA_SELECT = "a"
     INPUT_K = 10
     # read record
-    if MODEL == 's':
+    if MODEL == "s":
         RELAX = False
     else:
         RELAX = True
@@ -163,7 +163,7 @@ if __name__ == '__main__':
         print("Relax Mondrian")
     else:
         print("Strict Mondrian")
-    if DATA_SELECT == 'i':
+    if DATA_SELECT == "i":
         print("INFORMS data")
         DATA = read_informs()
     else:
@@ -175,13 +175,13 @@ if __name__ == '__main__':
         print(INTUITIVE_ORDER)
     if LEN_ARGV > 3:
         FLAG = sys.argv[3]
-    if FLAG == 'k':
+    if FLAG == "k":
         get_result_k(DATA)
-    elif FLAG == 'qi':
+    elif FLAG == "qi":
         get_result_qi(DATA)
-    elif FLAG == 'data':
+    elif FLAG == "data":
         get_result_dataset(DATA)
-    elif FLAG == '':
+    elif FLAG == "":
         get_result_one(DATA)
     else:
         try:

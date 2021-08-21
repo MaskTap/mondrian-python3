@@ -10,17 +10,17 @@ def _requires_from_file(filename):
 
 
 setup(
-    name="mondrian-python3",
+    name="mondrian",
     version="0.1.0",
     license="",
     description="",
     author="MaskTap, Inc.",
     url="",
-    packages=["mondrian-python3", "mondrian-python3.utils"],
-    # packages=find_packages("mondrian-python3"),
-    # package_dir={"": "mondrian-python3"},
+    packages=["mondrian", "mondrian.utils"],
+    # packages=find_packages("mondrian"),
+    # package_dir={"": "mondrian"},
     #     py_modules=[splitext(basename(path))[0] for path in glob(
-    #         "mondrian-python3/*.py") + glob("mondrian-python3/utils/*.py")],
+    #         "mondrian/*.py") + glob("mondrian/utils/*.py")],
     #     include_package_data=True,
     zip_safe=False,
     # install_requires=_requires_from_file("requirements.txt"),
