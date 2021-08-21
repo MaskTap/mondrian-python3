@@ -24,7 +24,7 @@ main module of mondrian
 
 import pdb
 import time
-from mondrian-python3.utils.utility import cmp_value, value, merge_qi_value
+from wrapmondrian.utils.utility import cmp_value, value, merge_qi_value
 from functools import cmp_to_key
 
 # warning all these variables should be re-inited, if
